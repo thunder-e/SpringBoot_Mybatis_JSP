@@ -16,6 +16,9 @@ public class HomeController {
 	@GetMapping("/")
 	public String home(Model model) {
 		model.addAttribute("message", "JSP Project");
+		
+		model.addAttribute("user", "선우");
+		model.addAttribute("msg", "test");
 		return "index"; //뷰로 찾아가는게 아니라 json으로 바뀌어서 데이터 전달
 	}
 	
