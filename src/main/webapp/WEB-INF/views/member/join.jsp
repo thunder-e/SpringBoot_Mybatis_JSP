@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- jsp 페이지 선언부에 spring message를 사용할 수 있도록 선언 -->
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<!-- Spring Form tag를 사용할 수 있도록 선언 -->
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +26,7 @@
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 			<a class="navbar-brand" href="#">Hidden brand</a>
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-				<li class="nav-item active"><a class="nav-link" href="#">Home <span class="sr-only">(current)</span>
+				<li class="nav-item active"><a class="nav-link" href="/">Home <span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="/member/join">Join</a></li>
 				<li class="nav-item"><a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a></li>
@@ -43,16 +45,39 @@
 	  </div>
 	</div>
 	
-	
+		
 	<div class="container">
-		<!-- spring:message code="properties의 key" -->
-		<!--  code(key)가 없는 경우 기본메세지 출력하는 text 속성 -->
-		<h1><spring:message code="hello1234" text="default message"></spring:message></h1>
-		<h1><spring:message code="hello"></spring:message></h1>
-		<h1><spring:message code="board.notice.list.welcome"></spring:message></h1>
-		<h1><spring:message code="user.welcome" arguments="${user},${msg}" argumentSeparator=","></spring:message></h1>
-	</div>
+		<h2>Member Join Page</h2>
+			<form:form id="frm" modelAttribute="memberVO" action="./join" method="post">
+			  <div class="form-group">
+			    <label for="username">ID</label>
+			    <form:input class="form-control" id="id" path="username"></form:input>
+			  </div>
+			  <div class="form-group">
+			    <label for="password">Password</label>
+			    <form:password class="form-control" id="pw" path="password"/>
+			  </div>		  
+			  <div class="form-group">
+			    <label for="password1">Password</label>
+			    <input type="password" class="form-control" id="pw1" name="password">
+			  </div>
+			  <div class="form-group">
+			    <label for="name">Name</label>
+			    <form:input  class="form-control" id="name" path="name"/>
+			    <form:errors path="name"></form:errors>
+			  </div>
+			  <div class="form-group">
+			    <label for="email">Email</label>
+			    <form:input class="form-control" id="email" path="email"/>
+			  </div>
+			  <div class="form-group">
+			    <label for="phone">Phone</label>
+			    <form:input class="form-control" id="phone" path="phone"/>
+			  </div>
 	
+			  <button type="submit" class="btn btn-primary">JOIN</button>
+			</form:form>
+		</div>
 
 	<footer class="footer mt-auto py-3 bg-dark">
 	  <div class="container">
