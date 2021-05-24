@@ -53,42 +53,18 @@
 		
 	<div class="container">
 		<h2>Member Join Page</h2>
-			<form:form id="frm" modelAttribute="memberVO" action="./join" method="post">
+			<form:form id="frm" action="./login" method="post">
 			  <div class="form-group">
 			    <label for="username">ID</label>
 			    <form:input class="form-control" id="id" path="username"></form:input>
 			  </div>
 			  <div class="form-group">
-			    <label for="password1">Password</label>
-			    <form:password class="form-control" id="pw1" path="password1"/>
-			    <form:errors path="password1" cssClass="c1"></form:errors>
-			  </div>
-			  <div class="form-group">
 			    <label for="password">Password</label>
 			    <form:password class="form-control" id="pw" path="password"/>
-			    <form:errors path="password" class="c1"></form:errors>
-			  </div>		  
-			  <div class="form-group">
-			    <label for="name">Name</label>
-			    <form:input  class="form-control" id="name" path="name"/>
-			    <form:errors path="name" cssClass="c1"></form:errors>
+			    <form:errors path="password" cssClass="c1"></form:errors>
 			  </div>
-			  <div class="form-group">
-			    <label for="email">Email</label>
-			    <form:input class="form-control" id="email" path="email"/>
-			    <form:errors path="email" cssClass="c1"></form:errors>
-			  </div>
-			  <div class="form-group">
-			    <label for="phone">Phone</label>
-			    <form:input class="form-control" id="phone" path="phone"/>
-			    <form:errors path="phone"></form:errors>
-			  </div>
-			  <div class="form-group">
-			    <label for="age">Age</label>
-			    <form:input class="form-control" id="age" path="age"/>
-			    <form:errors path="age"></form:errors>
-			  </div>
-			  <button type="submit" class="btn btn-primary">JOIN</button>
+			 
+			  <button type="submit" class="btn btn-primary">LOGIN</button>
 			</form:form>
 		</div>
 
