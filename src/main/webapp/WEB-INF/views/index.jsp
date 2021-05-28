@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- jsp 페이지 선언부에 spring message를 사용할 수 있도록 선언 -->
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<!-- spring security에 관련된 태그 -->
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,24 +19,30 @@
 <title>Hello, world!</title>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-			<a class="navbar-brand" href="#">Hidden brand</a>
-			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-				<li class="nav-item active"><a class="nav-link" href="#">Home <span class="sr-only">(current)</span>
-				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-				<li class="nav-item"><a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a></li>
-			</ul>
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-			</form>
-		</div>
+	   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+	    <a class="navbar-brand" href="#">Hidden brand</a>
+	    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+	      <li class="nav-item active">
+	        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/member/memberJoin">Join</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+	      </li>
+	    </ul>
+	    <form class="form-inline my-2 my-lg-0">
+	      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+	      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+	    </form>
+	  </div>
 	</nav>
+	 
 
 	<div class="jumbotron jumbotron-fluid mt-3">    <!-- mt = margin-top  mr = margin-right  my = margin- y축(top, bottom) -->
 	  <div class="container">
@@ -45,6 +53,29 @@
 	
 	
 	<div class="container">
+		<h1>
+			<!-- 로그인 상태 또는 사용자가 익명사용자 -->
+			<sec:authorize access="isAuthenticated()">
+				로그인 성공 상태
+			</sec:authorize>
+			<!-- 로그인 하지 않은 상태 			메소드형태	-->
+			<sec:authorize access="!isAuthenticated()">
+				로그인 하지 않은 상태
+			</sec:authorize>
+			
+			<sec:authorize access="hasRole('ROLE_ADMIN')"> <!-- if와 비슷 true면 출력 -->
+				관리자
+			</sec:authorize>
+			<!-- authentication에 바로 접근, 속성명을 property에 넣어 가져옴 principal.속성명  -->
+			<!-- principal : 현재 user정보가 담겨져 있는 객체 -->
+			<sec:authentication property="principal.username"/>님 환영합니다
+			<sec:authentication property="principal.name"/>님 환영합니다
+			
+			
+		</h1>
+	
+	
+	
 		<!-- spring:message code="properties의 key" -->
 		<!--  code(key)가 없는 경우 기본메세지 출력하는 text 속성 -->
 		<h1><spring:message code="hello1234" text="default message"></spring:message></h1>
